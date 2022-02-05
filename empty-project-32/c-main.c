@@ -9,7 +9,11 @@
 
 #include <stdio.h>
 
+// Functions
+// void some_asm_function();
+
 // Variables
+// type g_some_c_variable;
 
 
 int main()

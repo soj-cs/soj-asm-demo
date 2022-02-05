@@ -11,12 +11,19 @@
 
 // functions prototypes
 int sum( int a, int b );
+
 int average( int *array, int N );
+
 int division( int a, int b, int *remainder );
+
 char *strmirror( char *str );
+
 char *int2str( int number, char *str );
+
 int strlength( char *str );
+
 char *strnospaces( char *str );
+
 
 int main()
 {

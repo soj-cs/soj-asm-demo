@@ -11,11 +11,17 @@
 
 // function prototypes
 float add_float( float a, float b );
+
 double add_double( double a, double b );
+
 double area_sphere( double r );
+
 float find_max( float *array, int N );
+
 double array_average( double *array, int N );
+
 double power_xy( double x, double exp );
+
 
 int main()
 {
@@ -32,7 +38,5 @@ int main()
 
     printf( "Power x^y: %f\n", power_xy( 2, 8 ) );
     printf( "Power x^y: %f\n", power_xy( 27, 1.0/3 ) );
-
-    
 }
 

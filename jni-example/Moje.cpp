@@ -9,7 +9,9 @@ extern "C" {
  * Signature: (I)I
  */
 JNIEXPORT jint JNICALL Java_Moje_celecislo(JNIEnv *, jclass, jint i)
-{ return i; }
+{ 
+    return i; 
+}
 
 JNIEXPORT jint JNICALL Java_Moje_pole(JNIEnv *e, jclass, jintArray p)
 {

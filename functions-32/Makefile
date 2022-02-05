@@ -7,7 +7,7 @@ CFLAGS += -m32
 all: $(TARGET)
 
 %.o: %.asm
-	nasm -g -f elf $<
+	nasm -g -f elf -Fdwarf $<
 
 clean:
 	rm -rf $(TARGET) *.o

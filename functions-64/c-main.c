@@ -12,26 +12,37 @@
 // functions prototypes
 // sum of two int
 int sum_int( int t_a, int t_b );
+
 // sum of two long
 long sum_long( long t_a, long t_b );
+
 // char t_c is in range?
 int char_in_range( char t_c, char t_low, char t_high );
+
 // sum of array
 int sum_int_array( int *t_array, int t_N );
+
 // average of array
 int average_int_array( int *t_array, int t_N );
+
 // length of string 
 long strlength( char *t_str );
+
 // division of two int with remainder
 int division_int( int t_a, int t_b, int *t_remainder );
+
 // division of two long with remainder
 long division_long( long t_a, long t_b, long *t_remainder );
+
 // string mirror
 char *strmirror( char *t_str );
+
 // convert int to string
 char *int2str( int t_number, char *t_str );
+
 // length of string with string instruction
 long strlength2( char *t_str );
+
 // remove spaces from string
 char *strnospaces( char *t_str );
 
@@ -69,3 +80,4 @@ int main()
     printf( "String length after:  %ld\n", strlength2( mezery ) );
 
 }
+

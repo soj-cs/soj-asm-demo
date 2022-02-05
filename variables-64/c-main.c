@@ -1,6 +1,6 @@
 //***************************************************************************
 //
-// Program for education in subject "Assembly Languages"
+// Program for education in subject "Assembly Languages" and "APPS"
 // petr.olivka@vsb.cz, Department of Computer Science, VSB-TUO
 //
 // Usage of variables in Assembly language
@@ -50,3 +50,4 @@ int main()
     printf( "Modifies  g_c_hello: '%s'\n", g_c_hello );
     printf( "Retezec g_a_4chars: '%s'\n", g_a_4chars );
 }
+

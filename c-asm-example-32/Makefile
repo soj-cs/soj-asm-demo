@@ -12,7 +12,7 @@ CFLAGS += -g -std=c99
 all: $(TARGET)
 
 %.o: %.asm
-	nasm -g -f elf$(ARCH) $<
+	nasm -g -f elf$(ARCH) -Fdwarf $<
 
 clean:
 	rm -rf $(TARGET) *.o

@@ -18,12 +18,12 @@ ifndef VER
 endif
 
 ifeq ($(VER),32)
-  NASMFLAGS=-f elf
+  NASMFLAGS=-f elf -Fdwarf
   CFLAGS+=-m32
   LDFLAGS+=
 else
 ifeq ($(VER),64)
-  NASMFLAGS=-f elf64
+  NASMFLAGS=-f elf64 -Fdwarf
   CFLAGS+=
   LDFLAGS+=
 else

@@ -52,14 +52,19 @@ int print()
           g_main_pub_x, g_main_loc_x, g_module_pub_x );
 }
 
+
 int main()
 {
   main_fun_loc();
   print();
+
   main_fun_pub();
   print();
+
   tool_fun_pub();
   print();
+
   //tool_fun_loc(); // impossible
   //print();
 }
+

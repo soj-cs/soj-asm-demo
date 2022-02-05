@@ -7,7 +7,7 @@ CFLAGS += -g -std=c99
 all: $(TARGET)
 
 %.o: %.asm
-	nasm -g -f elf64 $<
+	nasm -g -f elf64 -Fdwarf $<
 
 clean:
 	rm -rf $(TARGET) *.o

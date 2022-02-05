@@ -56,10 +56,14 @@ int main()
 {
   main_fun_loc();
   print();
+
   main_fun_pub();
   print();
+
   tool_fun_pub();
   print();
+
   //tool_fun_loc(); // impossible
   //print();
 }
+

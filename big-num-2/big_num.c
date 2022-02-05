@@ -12,114 +12,123 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-// a /= b; return n % div
-int div_intNint32( int *a, int b, int N );
-// a += b 
-void add_intNint32( int *a, int b, int N );
-// a *= b
-void mul_intNint32( int *a, int b, int N );
-// a += b
-void add_intNintN( int *a, int *b, int N );
-// a -= b
-void sub_intNintN( int *a, int *b, int N );
-// n <<= 1; return CF;
-int shl_intN( int *n, int N );
-// n >>= 1; return CF
-int shr_intN( int *n, int N );
-// n >>>= 1; return CF
-int ror_intN( int *n, int N );
-// n >>= cl <0,31>; return lost bits
-int shrd_intN( int *n, int cl, int N );
-// n <<= cl <0,31>; return lost bits
-int shld_intN( int *n, int cl, int N );
+// t_a /= t_b; return t_a % t_b
+int div_intNint32( int *t_a, int t_b, int t_N );
+
+// t_a += t_b 
+void add_intNint32( int *t_a, int t_b, int t_N );
+
+// t_a *= t_b
+void mul_intNint32( int *t_a, int t_b, int t_N );
+
+// t_a += t_b
+void add_intNintN( int *t_a, int *t_b, int t_N );
+
+// t_a -= t_b
+void sub_intNintN( int *t_a, int *t_b, int t_N );
+
+// t_n <<= 1; return CF;
+int shl_intN( int *t_n, int t_N );
+
+// t_n >>= 1; return CF
+int shr_intN( int *t_n, int t_N );
+
+// t_n >>>= 1; return CF
+int ror_intN( int *t_n, int t_N );
+
+// t_n >>= cl <0,31>; return lost bits
+int shrd_intN( int *t_n, int cl, int t_N );
+
+// t_n <<= cl <0,31>; return lost bits
+int shld_intN( int *t_n, int cl, int t_N );
 
 // intN to string
-void intN_to_str( int *n, int N, char *s );
+void intN_to_str( int *t_n, int t_N, char *t_str );
 // string to intN
-void str_to_intN( char *s, int *n, int N );
+void str_to_intN( char *t_str, int *t_n, int t_N );
 
-// a /= b, b = remainder
-void div_intNintN( int *a, int *b, int N );
-// a *= b
-void mul_intNintN( int *a, int *b, int N );
-// is zero? ( n == 0 )
-// return n == 0
-int is_zero( int *n, int N )
+// t_a /= t_b, t_b = remainder
+void div_intNintN( int *t_a, int *t_b, int t_N );
+// t_a *= t_b
+void mul_intNintN( int *t_a, int *t_b, int t_N );
+// is zero? ( t_n == 0 )
+// return t_n == 0
+int is_zero( int *t_n, int t_N )
 {
   int i = 0;
-  while ( i < N ) if ( n[ i++ ] ) return 0;
+  while ( i < t_N ) if ( t_n[ i++ ] ) return 0;
   return 1;
 }
 
 // compare of two intN numbers
-// a >  b return  1
-// a == b return  0
-// a <  b return -1
-int cmp_intNintN( int *a, int *b, int N )
+// t_a >  t_b return  1
+// t_a == t_b return  0
+// t_a <  t_b return -1
+int cmp_intNintN( int *t_a, int *t_b, int t_N )
 {
   int i;
-  for ( i = N - 1; i >= 0; i-- )
+  for ( i = t_N - 1; i >= 0; i-- )
   {
-      if ( a[ i ] == b[ i ] ) continue;
-      if ( ( unsigned int ) a[ i ] > ( unsigned int ) b[ i ] ) return 1;
+      if ( t_a[ i ] == t_b[ i ] ) continue;
+      if ( ( unsigned int ) t_a[ i ] > ( unsigned int ) t_b[ i ] ) return 1;
       return -1;
   }
   return 0;
 }
 
 // intN to string in hexadecimal form
-void intN_to_hex( int *n, int N, char *s )
+void intN_to_hex( int *t_n, int t_N, char *t_str )
 {
    int i = 0;
-   for ( ; i < N; i++, s+= 8 )
-       sprintf( s, "%08X", n[ N - i - 1 ] );
+   for ( ; i < t_N; i++, t_str+= 8 )
+       sprintf( t_str, "%08X", t_n[ t_N - i - 1 ] );
 }
 
 // random number
-void get_random( char *s, int N )
+void get_random( char *t_str, int t_N )
 {
   int i = 0;
   static int init_rand = 1;
   if ( init_rand ) srand( getuid() );
 
-  for ( ; i < N; i++ )
-    s[ i ] = rand() % 10 + '0';
+  for ( ; i < t_N; i++ )
+    t_str[ i ] = rand() % 10 + '0';
 
-  s[ i ] = 0;
+  t_str[ i ] = 0;
 }
 
-// a /= b, b = remainder
-/*void div_intNintN( int *a, int *b, int N )
+// t_a /= t_b, t_b = remainder
+/*void div_intNintN( int *t_a, int *t_b, int t_N )
 {
-  int dividend[ 2 * N ];
-  int *H = divident + N;
+  int dividend[ 2 * t_N ];
+  int *H = divident + t_N;
 
-  divident = a
+  divident = t_a
 
   for ( all_bits ... )
   {
       divident <<= 1
       res <<= 1
-      if ( H >= b )
+      if ( H >= t_b )
       {
-          H -= b;
+          H -= t_b;
           res |= 1;
       }
   }
   ... store res-ult and remainder
 }*/
 
-// a *= b
-/*void mul_intNintN( int *a, int *b, int N )
+// t_a *= t_b
+/*void mul_intNintN( int *t_a, int *t_b, int t_N )
 {
   res = 0
 
   for( all_bits.... )
   {
-      if ( b is odd )
-          res += a;
-      a <<= 1;
-      b >>= 1;
+      if ( t_b is odd )
+          res += t_a;
+      t_a <<= 1;
+      t_b >>= 1;
   }
   store res-ult...
 }*/
@@ -127,58 +136,58 @@ void get_random( char *s, int N )
 #define N_INT   16
 #define N_CHAR  ( N_INT * 32 * 3 / 10 + 2 )
 
-void print_number( int *n, int N )
+void print_number( int *t_n, int t_N )
 {
-  char number[ N_CHAR ];
+  char l_str_number[ N_CHAR ];
   int i = 0;
 
-  intN_to_hex( n, N, number );
-  printf( "Hexadecimal number:\n%s\n\n", number );
+  intN_to_hex( t_n, t_N, l_str_number );
+  printf( "Hexadecimal number:\n%s\n\n", l_str_number );
 
-  intN_to_str( n, N_INT, number );
-  printf( "Decimal number:\n%s\n\n", number );
+  intN_to_str( t_n, N_INT, l_str_number );
+  printf( "Decimal number:\n%s\n\n", l_str_number );
 
   //printf( "Content of array (low first):\n" );
-  //for ( ; i < N; i++ )
-  //    printf( "%d ", n[ i ] );
+  //for ( ; i < t_N; i++ )
+  //    printf( "%d ", t_n[ i ] );
 
   //printf( "\n\n" );
 }
 
 int main()
 {
-  int bin1[ N_INT ] =
+  int l_bin_a[ N_INT ] =
     { 0xabcd, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; // 2^255
-  int bin2[ N_INT ] =
+  int l_bin_b[ N_INT ] =
     { 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 }; // 2^256
   int divisor[ N_INT ] =
     { 1000000000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; // 10^9
 
-  int ran_number_b[ N_INT ];
-  char ran_number_a[ N_CHAR ];
+  int l_bin_ran[ N_INT ];
+  char l_str_ran[ N_CHAR ];
 
   printf( "\nBig number computing example.\n" );
   printf( "Computing with assigned numbers\n\n" );
   printf( "Numbers multiplication:\n\n" );
 
-  mul_intNintN( bin1, bin2, N_INT );
-  print_number( bin1, N_INT );
+  mul_intNintN( l_bin_a, l_bin_b, N_INT );
+  print_number( l_bin_a, N_INT );
 
   printf( "Press <Enter>\n" );
   getchar();
 
-  get_random( ran_number_a, 100 );
+  get_random( l_str_ran, 100 );
   printf( "Computing with random number:\n\n" );
 
   printf( "Division of numbers\n\n" );
 
-  str_to_intN( ran_number_a, ran_number_b, N_INT );
-  print_number( ran_number_b, N_INT );
+  str_to_intN( l_str_ran, l_bin_ran, N_INT );
+  print_number( l_bin_ran, N_INT );
 
-  div_intNintN( ran_number_b, divisor, N_INT );
+  div_intNintN( l_bin_ran, divisor, N_INT );
 
   printf( "Result of division:\n" );
-  print_number( ran_number_b, N_INT );
+  print_number( l_bin_ran, N_INT );
 
   printf( "Remainder:\n" );
   print_number( divisor, N_INT );
