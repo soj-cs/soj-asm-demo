@@ -21,6 +21,8 @@
 g_module_pub_x      dd      0
 g_module_loc_x      dd      0
 
+;***************************************************************************
+
     section .text
 
     ; public label (function)
