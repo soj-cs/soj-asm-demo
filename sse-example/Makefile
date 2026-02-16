@@ -3,6 +3,7 @@ TARGET=c-main
 CFLAGS += $(shell gcc -v 2>&1 | grep enable-default-pie > /dev/null && echo \-no\-pie)
 CFLAGS += -g -std=c99
 #CFLAGS += -m32
+LDFLAGS = -z noexecstack
 
 all: $(TARGET)
 
@@ -13,4 +14,5 @@ clean:
 	rm -rf $(TARGET) *.o
 
 $(TARGET): asm-tool.o c-main.c
-	cc $(CFLAGS) asm-tool.o c-main.c -o $(TARGET)
+	cc $(CFLAGS) asm-tool.o c-main.c -o $(TARGET) $(LDFLAGS)
+

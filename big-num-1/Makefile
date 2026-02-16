@@ -9,6 +9,7 @@ LIBNAME=libbignum
 
 CFLAGS += $(shell gcc -v 2>&1 | grep enable-default-pie > /dev/null && echo \-no\-pie)
 CFLAGS += -g -std=c99
+LDFLAGS=-z noexecstack
 
 ifndef VER
   VER=32
@@ -33,7 +34,7 @@ endif
 
 LIBFILE=$(LIBNAME)$(VER).a
 NASMFLAGS+=-g
-CFLAGS+=-g 
+CFLAGS+=-g
 LDFLAGS+=$(LIBFILE)
 
 all: $(TARGET)
